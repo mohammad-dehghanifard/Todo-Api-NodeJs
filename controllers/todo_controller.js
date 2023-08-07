@@ -1,6 +1,9 @@
 const {Todo} = require("../models/todo_model")
 
-async function getAllTodo(req,res){}
+async function getAllTodo(req,res){
+    const result = await Todo.find();
+    res.json(result);
+}
 
 async function addNewTodo(){
     // گرفتن عنوان و توضیحات از کاربر
