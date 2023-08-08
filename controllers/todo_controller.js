@@ -39,5 +39,6 @@ module.exports = {
     getTodoById,
     updateTodoById,
     deleteTodo,
+    addNewTodo
 }
 
