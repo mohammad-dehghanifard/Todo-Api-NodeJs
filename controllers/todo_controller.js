@@ -78,7 +78,21 @@ async function updateTodoById(req,res){
     res.json(todo);
 }
 
-async function deleteTodo(req,res){}
+async function deleteTodo(req,res){
+    const id = req.body.id;
+
+    if(!id)
+    {
+        return res.status(400).json(
+            {
+                error : "Bad Request! Id NotFound!"
+            }
+        )
+    }
+
+    const todo = await Todo.findByIdAndRemove({_id : id});
+    res.send(todo);
+}
 
 
 

@@ -13,6 +13,8 @@ server.get("/getall",todoController.getAllTodo);
 server.get("/getToDoById/:todo_id",todoController.getTodoById);
 //اپدیت ایتم بر اساس ایدی
 server.post("/updateTodo",todoController.updateTodoById)
+// حذف ایتم بر اساس ایدی
+server.post("/deleteById",todoController.deleteTodo)
 
 server.listen(port,() =>{
     console.log("start listen in port : " + port);
