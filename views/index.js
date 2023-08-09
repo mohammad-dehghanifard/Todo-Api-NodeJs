@@ -3,11 +3,11 @@ const todoController = require("../controllers/todo_controller");
 
 const port = 3232;
 const server = express();
-const router = express.Router();
+server.use(express.json())
 
-router.use(express.json());
+server.post("/addtodo",todoController.addNewTodo)
 
-router.post("/addtodo",todoController.addNewTodo)
+server.get("/getall",todoController.getAllTodo)
 
 server.listen(port,() =>{
     console.log("start listen in port : " + port);
