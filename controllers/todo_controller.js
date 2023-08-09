@@ -45,7 +45,38 @@ async function getTodoById(req,res){
     res.json(result);
 }
 
-async function updateTodoById(req,res){}
+async function updateTodoById(req,res){
+    const id = req.body.id;
+
+    if(!id)
+    {
+        return res.status(400).json(
+            {
+                error : "Bad Request! Id NotFound!"
+            }
+        )
+    }
+
+    const title = req.body.title;
+    const content = req.body.content;
+    const isDone = req.body.isDone;
+
+    const todo = await Todo.findByIdAndUpdate(
+        {_id : id},
+        {
+            $set : {
+                title : title,
+                content : content,
+                isDone : isDone
+            }
+        },
+        {
+            new : true // => مقدار متغیر رو به ابجکت اپدیت شده تغییر میده
+        }
+    );
+
+    res.json(todo);
+}
 
 async function deleteTodo(req,res){}
 
