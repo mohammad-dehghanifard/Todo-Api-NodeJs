@@ -5,34 +5,37 @@ async function getAllTodo(req,res){
     res.json(result);
 }
 
-async function addNewTodo(){
-    // گرفتن عنوان و توضیحات از کاربر
-    const title = req.body.title;
-    const content = req.body.content;
+async function addNewTodo(req, res) {
 
-    // اعتبار سنجی دریافتی ها
-    if(!title || !content){
-          return res.status(400).json(
-            {
-                error : "Bad Request!"
-            }
-          )  
+    // دریافت ازطلاعات از کاربر
+    const title = req.body.title;
+    const content = req.body.content
+
+    // اعتبار سنجی داده ها
+    if (!title || !content) {
+        return res.status(400).json({
+            error: "Bad Request! No data provided."
+        });
     }
 
-    const todo = new Todo({
+    // اضافه کردن دیتا به دیتابیس و نمایش به کاربر
+    let data = new Todo({
         title: title,
-        content : content
-    })
+        content: content
+    });
 
-    const result = await todo.save();
-    res.json(result);
+    data = await data.save();
+    res.json(data);
 }
+
 
 async function getTodoById(req,res){}
 
 async function updateTodoById(req,res){}
 
 async function deleteTodo(req,res){}
+
+
 
 module.exports = {
     getAllTodo,
