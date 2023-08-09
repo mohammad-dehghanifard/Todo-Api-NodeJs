@@ -29,7 +29,21 @@ async function addNewTodo(req, res) {
 }
 
 
-async function getTodoById(req,res){}
+async function getTodoById(req,res){
+    const id = req.params.todo_id;
+
+    if(!id)
+    {
+        return res.status(400).json(
+            {
+                error : "Bad Request! Id NotFound!"
+            }
+        )
+    }
+
+    const result = await Todo.findById({_id:id});
+    res.json(result);
+}
 
 async function updateTodoById(req,res){}
 
